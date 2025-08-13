@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ lang: 'en', darkMode: true }" :class="{ 'dark': darkMode }">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us – Arcadia</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js CDN -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+  <!-- Header Component -->
+  <div x-data="header()">
+    <header class="flex justify-between items-center px-6 py-4 border-b border-gray-700">
+      <div class="flex items-center space-x-4">
+        <img src="https://placehold.co/32x32/fbbf24/000000.png?text=A" alt="Arcadia Logo" class="h-8">
+        <a href="index.html" class="text-xl font-bold hover:text-yellow-500">Arcadia</a>
+      </div>
+
+      <nav class="flex items-center space-x-6">
+        <button @click="lang = (lang === 'en' ? 'es' : 'en')" class="text-sm border px-3 py-1 rounded">
+          <span x-text="lang.toUpperCase()"></span>
+        </button>
+        <a href="login.html" class="hover:underline">Log In</a>
+        <a href="signup.html" class="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-400">Sign Up</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">Get in Touch</h1>
+        <p class="text-gray-400">We're here to help you unlock Bitcoin's prosperity</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Information -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/24x24/fbbf24/000000.png?text=@" class="h-6">
+                <span>support@arcadia.com</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/24x24/fbbf24/000000.png?text=📞" class="h-6">
+                <span>+52 55 1234 5678</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/24x24/fbbf24/000000.png?text=📍" class="h-6">
+                <span>Mexico City, Mexico</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Business Hours</h3>
+            <div class="text-gray-400 space-y-1">
+              <p>Monday - Friday: 9:00 AM - 6:00 PM (CST)</p>
+              <p>Saturday: 10:00 AM - 4:00 PM (CST)</p>
+              <p>Sunday: Closed</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+            <div class="space-y-2">
+              <a href="#" class="block text-yellow-500 hover:text-yellow-400">Schedule Investor Demo</a>
+              <a href="#" class="block text-yellow-500 hover:text-yellow-400">Download Whitepaper</a>
+              <a href="#" class="block text-yellow-500 hover:text-yellow-400">Support Center</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div x-data="contactForm()">
+          <form @submit.prevent="submitContact" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="firstName" class="block text-sm font-medium text-gray-300">First Name</label>
+                <input 
+                  x-model="form.firstName" 
+                  type="text" 
+                  id="firstName" 
+                  required 
+                  class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                >
+              </div>
+              <div>
+                <label for="lastName" class="block text-sm font-medium text-gray-300">Last Name</label>
+                <input 
+                  x-model="form.lastName" 
+                  type="text" 
+                  id="lastName" 
+                  required 
+                  class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                >
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+              <input 
+                x-model="form.email" 
+                type="email" 
+                id="email" 
+                required 
+                class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+              >
+            </div>
+
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-300">Subject</label>
+              <select 
+                x-model="form.subject" 
+                id="subject" 
+                required
+                class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+              >
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="investor">Investor Relations</option>
+                <option value="partnership">Partnership Opportunities</option>
+                <option value="media">Media Inquiry</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+              <textarea 
+                x-model="form.message" 
+                id="message" 
+                rows="4" 
+                required
+                class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                placeholder="How can we help you?"
+              ></textarea>
+            </div>
+
+            <div>
+              <button 
+                type="submit" 
+                class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                :disabled="loading"
+              >
+                <span x-show="!loading">Send Message</span>
+                <span x-show="loading">Sending...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Component -->
+  <div x-data="footer()">
+    <footer class="bg-gray-900 text-gray-500 text-center py-6 text-sm border-t border-gray-700">
+      &copy; 2025 Arcadia. All rights reserved. |
+      <a href="#" class="hover:underline">Privacy Policy</a> |
+      <a href="#" class="hover:underline">Terms of Service</a> |
+      <a href="contact.html" class="hover:underline">Contact</a>
+    </footer>
+  </div>
+
+  <script>
+    function header() {
+      return {
+        lang: 'en'
+      }
+    }
+    
+    function footer() {
+      return {}
+    }
+
+    function contactForm() {
+      return {
+        loading: false,
+        form: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          subject: '',
+          message: ''
+        },
+        submitContact() {
+          this.loading = true;
+          // Simulate API call
+          setTimeout(() => {
+            alert('Thank you for your message! We will get back to you soon.');
+            this.form = {
+              firstName: '',
+              lastName: '',
+              email: '',
+              subject: '',
+              message: ''
+            };
+            this.loading = false;
+          }, 1000);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
